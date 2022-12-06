@@ -1,0 +1,37 @@
+<form #formStudent=ngform>
+  <div class="flex px-2">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Student Name</mat-label>
+      <input required [(ngModel)]="name" matInput name="txt-name" placeholder="Enter name" pattern="^[A-Za-z ]+$">
+      <mat-error >Please enter a valid name</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="flex px-2">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Student Address</mat-label>
+      <input required [(ngModel)]="address" name="txtAddress" #txtName matInput placeholder="Enter address" pattern=".{3,}">
+      <mat-error >Enter valid address</mat-error>
+    </mat-form-field>
+
+  </div>
+  <div class="flex px-2">
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Contact</mat-label>
+      <input required [(ngModel)]="contact" name="txt-contact" matInput placeholder="077-12634567" pattern="^\d{3}-\d{7}$">
+      <mat-error >Enter valid contact number</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="flex ">
+    <input #file class="hidden" type="file" accept="image/*" (change)="updatePicture(file)">
+    <div class="ml-4 mr-4 border border-gray-300 w-36 h-36 rounded-md bg-cover bg-no-repeat bg-center" [style.background-image]="imageUrl" id="photo-id"></div>
+    <div class="flex flex-col">
+      <button (click)="file.click()" class="mt-2" mat-raised-button>Choose Image</button>
+      <button class="mt-2" mat-raised-button color="warn" (click)="updatePicture(); file.value=''">Remove</button>
+    </div>
+  </div>
+  <hr class="mt-2">
+  <button (click)="saveStudent(formStudent,file.files!.item(0))" class="mt-2 ml-4" mat-raised-button color="primary">Save Student</button>
+
+</form>
+
